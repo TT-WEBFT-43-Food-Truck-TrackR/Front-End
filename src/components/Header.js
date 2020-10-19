@@ -14,7 +14,7 @@ background-color:#4D4D4D;
 color:#ACACAC;
 max-height:10vh;
 h1{
-
+  padding:.5%;
   font-size:calc(3rem + 0.4vw);
   margin-right:auto;
 }
@@ -34,13 +34,14 @@ a{
   a:hover{
     transform:scale(1.2);
     transition:all 0.2s ease-in-out;
-    color:#005569;
+    color:#0392A6;
 }
 `
 const StyledImg = styled.img`
   width:100%;
   max-height:65vh;
 `
+
 export default function Header() {
   return (
     <>
