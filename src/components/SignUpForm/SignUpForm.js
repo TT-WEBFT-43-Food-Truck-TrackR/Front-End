@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { Link } from "react-router-dom"
+
 import { v4 as uuid } from "uuid"
 
 import "./SignUpForm.css"
@@ -26,6 +28,8 @@ export default function SignUpForm({ submit }) {
   const [errors, setErrors] = useState(initialErrorValues)
   const [disabled, setDisabled] = useState(true)
 
+  const [users, setUsers] = useState([])
+  
   const onChange = e => {
     const { name, value, checked, type } = e.target
     const newValue = type === "checkbox" ? checked : value
@@ -58,7 +62,11 @@ export default function SignUpForm({ submit }) {
       password: formValues.password.trim(),
       email: formValues.email.trim(),
     }
-    submit(newUser)
+
+    setUsers([
+      ...users,
+      newUser
+    ])
     setFormValues(initialFormValues)
   }
 
@@ -69,45 +77,49 @@ export default function SignUpForm({ submit }) {
   }, [formValues])
 
   return (
-    <form onSubmit={ onSubmit }>
-      <label>
-        Username
-        <input
-          type="text"
-          name="username"
-          value={ formValues.username }
-          onChange={ onChange }
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={ formValues.password }
-          onChange={ onChange }
-        />
-      </label>
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          value={ formValues.email }
-          onChange={ onChange }
-        />
-      </label>
-      <label className="terms">
-        <input
-          type="checkbox"
-          name="terms"
-          checked={ formValues.terms }
-          onChange={ onChange }
-        />
-        <span className="checkmark"></span>
-        I agree to the <a href="https://www.facebook.com/terms.php">Terms of Service</a>
-      </label>
-      <button disabled={ disabled }>Sign Up</button>
-    </form>
+
+    <div className="signup-container">
+      <form onSubmit={ onSubmit }>
+        <label>
+          Username
+          <input
+            type="text"
+            name="username"
+            value={ formValues.username }
+            onChange={ onChange }
+          />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            value={ formValues.password }
+            onChange={ onChange }
+          />
+        </label>
+        <label>
+          Email
+          <input
+            type="email"
+            name="email"
+            value={ formValues.email }
+            onChange={ onChange }
+          />
+        </label>
+        <label className="terms">
+          <input
+            type="checkbox"
+            name="terms"
+            checked={ formValues.terms }
+            onChange={ onChange }
+          />
+          <span className="checkmark"></span>
+          I agree to the <a href="https://www.facebook.com/terms.php">Terms of Service</a>
+        </label>
+        <button disabled={ disabled }>Sign Up</button>
+      </form>
+      <Link to="/login/signin">Already a member?</Link>
+    </div>
   )
 }

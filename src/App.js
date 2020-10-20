@@ -7,8 +7,10 @@ import 'fontsource-roboto';
 
 import LandingPage from "./components/LandingPage/LandingPage"
 import Header from "./components/Header/Header"
-import SignIn from "./components/SignIn/SignIn"
-import SignUp from "./components/SignUp/SignUp"
+
+import SignInForm from "./components/SignInForm/SignInForm"
+import SignUpForm from "./components/SignUpForm/SignUpForm"
+import Dashboard from "./components/Dashboard/Dashboard"
 
 function App() {
   return (
@@ -16,15 +18,19 @@ function App() {
       <CssBaseline />
 
       <Switch>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
         <Route path="/signup">
           <Header />      
-          <SignUp />
+          <SignUpForm />
         </Route>
         <Route path="/signin">
           <Header />      
-          <SignIn />
+          <SignInForm />
         </Route>
         <Route path="/">
+          <Header />
           <LandingPage />
         </Route>
       </Switch> 

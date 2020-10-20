@@ -6,8 +6,11 @@ import headerImg from "../../assets/headerImg.png"
 
 import "./LandingPage.css"
 
+
+import Header from "../Header/Header"
 import MainFooter from "../MainFooter/MainFooter"
 import Rating from "../Rating/Rating"
+import Search from "../Search/Search"
 
 const foodTrucks = [
   {
@@ -39,7 +42,9 @@ const foodTrucks = [
 export default function LandingPage() {
   return (
     <div className="landing-page">
-      <h1>Food Truck TrackR</h1> 
+
+      {/* <Header /> */}
+      {/* <h1>Food Truck TrackR</h1> 
       <img src={ headerImg } alt="food truck" />
       <div className="landing-page-nav">
         <NavLink
@@ -50,7 +55,9 @@ export default function LandingPage() {
           className="nav-link bottom"
           to="/signin"
         >Sign In</NavLink>
-      </div>
+
+      </div> */}
+      <Search />
       <MainFooter />
       { foodTrucks.map(truck => {
         return (

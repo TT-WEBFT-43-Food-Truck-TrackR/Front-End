@@ -18,6 +18,7 @@ export default function Rating({ truck }) {
   for (let i = 0; i < 5 - rating; i++) {
     nulls.push(i)
   }
+
   return (
     <div className="rating">
       <div className="rating-truck-name">{ name }</div>
