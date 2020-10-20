@@ -22,16 +22,16 @@ export function fetchFoodieTrucks(){
     }
 }
 
-export function fetchOwnerTrucks(){
+export function fetchOwnerTrucks(id){
     return {
         type:actions.owner.FETCH_TRUCKS,
-        paylod:''
+        paylod:id
     }
 }
-export function fetchOwnerTruck(){
+export function fetchOwnerTruck(id){
     return {
         type:actions.owner.FETCH_TRUCK,
-        paylod:''
+        paylod:id
     }
 }
 export function postTruck(truck){
@@ -46,10 +46,10 @@ export function updateTruck(truck){
         paylod:truck
     }
 }
-export function fetchReview(){
+export function fetchReview(id){
     return {
         type:actions.foodie.FETCH_REVEIW,
-        paylod:''
+        paylod:id
     }
 }
 
