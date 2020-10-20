@@ -14,7 +14,7 @@ const initialMenuValues = {
   price: ''
 }
 
-export default function AddTruckForm({ addTruck }) {
+export default function EditTruckFrom({ truck }) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [menuFormValues, setMenuFormValues] = useState(initialMenuValues)
 
