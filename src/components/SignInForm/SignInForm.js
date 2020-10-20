@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useRouteMatch } from "react-router-dom"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 
 import "./SignInForm.css"
 
@@ -22,6 +22,15 @@ export default function SignInForm({ submit }) {
   const [disabled, setDisabled] = useState(true)
   const { url } = useRouteMatch()
   const hist = useHistory()
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: "chrisg",
+      password: "123456",
+      email: "cg@cg.com" 
+    }
+  ])
+
 
   const onChange = e => {
     const { name, value } = e.target
@@ -48,14 +57,7 @@ export default function SignInForm({ submit }) {
 
   const onSubmit = e => {
     e.preventDefault()
-    const user = {
-      username: formValues.username,
-      password: formValues.password
-    }
-    if (submit(user)) {
-      console.log("test")
-      hist.push(`${user.username}`)
-    }
+    hist.push(users[0].id)
   }
 
   useEffect(() => {
@@ -65,26 +67,29 @@ export default function SignInForm({ submit }) {
   }, [formValues])
   
   return (
-    <form onSubmit={ onSubmit }>
-      <label>
-        Username
-        <input
-          type="text"
-          name="username"
-          value={ formValues.username }
-          onChange={ onChange }
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={ formValues.password }
-          onChange={ onChange }
-        />
-      </label>
-      <button disabled={ disabled }>Sign In</button>
-    </form>
+    <div className="signin-container">
+      <form onSubmit={ onSubmit }>
+        <label>
+          Username
+          <input
+            type="text"
+            name="username"
+            value={ formValues.username }
+            onChange={ onChange }
+          />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            value={ formValues.password }
+            onChange={ onChange }
+          />
+        </label>
+        <button disabled={ disabled }>Sign In</button>
+      </form>
+      <Link to="/login/signup">Not a member?</Link>
+    </div>
   )
 }
