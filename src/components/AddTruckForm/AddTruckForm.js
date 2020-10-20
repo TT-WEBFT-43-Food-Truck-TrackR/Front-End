@@ -80,6 +80,11 @@ export default function AddTruckForm({ addTruck }) {
         />
       </label> 
       <form onSubmit={ addMenuItem }>
+        { formValues.menu.map(item => {
+          return (
+            <div>{item.itemName}</div>
+          )
+        })}
         <label>
           Item Name
           <input

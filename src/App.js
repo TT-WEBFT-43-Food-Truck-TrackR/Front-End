@@ -19,6 +19,7 @@ function App() {
 
       <Switch>
         <Route path="/dashboard">
+          <Header />
           <Dashboard />
         </Route>
         <Route path="/signup">
