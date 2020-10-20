@@ -1,6 +1,6 @@
 const actions = {
     foodie:{
-        FETCH_TRUCKS:"FETCH_TRUCKS",
+        FETCH_ALL_TRUCKS:"FETCH_TRUCKS",
         FETCH_TRUCK_REVIEWS:"FETCH_TRUCK_REVIEWS",
         FETCH_REVEIW:"FETCH_REVEIW",
         POST_REVIEW:"POST_REVIEW",
