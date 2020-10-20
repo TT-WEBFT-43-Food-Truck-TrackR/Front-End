@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { Link } from "react-router-dom"
 
 import { v4 as uuid } from "uuid"
@@ -26,6 +27,7 @@ export default function SignUpForm({ submit }) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [errors, setErrors] = useState(initialErrorValues)
   const [disabled, setDisabled] = useState(true)
+
   const [users, setUsers] = useState([])
   
   const onChange = e => {
@@ -60,6 +62,7 @@ export default function SignUpForm({ submit }) {
       password: formValues.password.trim(),
       email: formValues.email.trim(),
     }
+
     setUsers([
       ...users,
       newUser
@@ -74,6 +77,7 @@ export default function SignUpForm({ submit }) {
   }, [formValues])
 
   return (
+
     <div className="signup-container">
       <form onSubmit={ onSubmit }>
         <label>

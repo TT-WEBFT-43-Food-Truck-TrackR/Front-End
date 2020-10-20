@@ -6,6 +6,7 @@ import headerImg from "../../assets/headerImg.png"
 
 import "./LandingPage.css"
 
+
 import Header from "../Header/Header"
 import MainFooter from "../MainFooter/MainFooter"
 import Rating from "../Rating/Rating"
@@ -41,6 +42,7 @@ const foodTrucks = [
 export default function LandingPage() {
   return (
     <div className="landing-page">
+
       {/* <Header /> */}
       {/* <h1>Food Truck TrackR</h1> 
       <img src={ headerImg } alt="food truck" />
@@ -53,6 +55,7 @@ export default function LandingPage() {
           className="nav-link bottom"
           to="/signin"
         >Sign In</NavLink>
+
       </div> */}
       <Search />
       <MainFooter />
