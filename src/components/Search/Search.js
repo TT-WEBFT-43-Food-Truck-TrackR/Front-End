@@ -1,4 +1,4 @@
-import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
+// import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
 import React, { useState, useRef } from 'react'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
