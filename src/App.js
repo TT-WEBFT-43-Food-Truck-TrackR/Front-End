@@ -17,6 +17,7 @@ function App() {
       <CssBaseline />
       <Switch>
         <Route path="/dashboard">
+          <Header />
           <Dashboard />
         </Route>
         <Route path="/signup">
