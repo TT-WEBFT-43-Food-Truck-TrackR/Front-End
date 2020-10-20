@@ -1,0 +1,44 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.landing-page h1 {
+  font-size: 2rem;
+  margin: 25px auto;
+}
+
+.landing-page-nav {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 5vh;
+}
+
+.nav-link {
+  margin: 20px auto;
+  padding: 5px 60px;
+  border-radius: 5px;
+  border: 3px solid #2196F3;
+}
+
+@keyframes btn-hover {
+  from {
+    border: 3px solid #2196F3;
+  }
+
+  to {
+    border: 3px solid #4CAF50;
+    transform: scale(1.2);
+  }
+}
+
+.nav-link:hover {
+  animation: btn-hover 800ms;
+  animation-fill-mode: forwards;
+}

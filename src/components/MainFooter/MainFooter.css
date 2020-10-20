@@ -1,0 +1,48 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  margin: 30px 0 0 0;
+  padding: 3px;
+  background-color: goldenrod;
+  box-sizing: inherit;
+}
+
+.footer-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  height: 100%;
+  width: 33%;
+}
+
+.footer-button:hover {
+  opacity: 80%;
+  background-color: lightgoldenrodyellow;
+  border: 3px solid lightgoldenrodyellow;
+  border-radius: 5px;
+}
+
+.footer-button-left {
+
+}
+
+.footer-button-center {
+
+}
+
+.footer-button-right {
+
+}
+
+.footer-text {
+  font-size: 1.3rem;
+  margin: 10px;
+}
+
+.footer-icon {
+  
+}

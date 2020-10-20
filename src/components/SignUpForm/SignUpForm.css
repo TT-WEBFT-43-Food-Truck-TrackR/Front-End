@@ -1,0 +1,106 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 102%;
+}
+
+label {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+}
+
+label.terms {
+  font-size: 1rem;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+  border: none;
+  border-bottom: 3px solid darkorange;
+  background: lightgoldenrodyellow;
+  width: 80%;
+  max-width: 500px;
+  height: 4vh;
+}
+
+input:focus {
+  background: lightyellow;
+}
+
+.terms {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0 auto 12px;
+}
+
+.terms input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: lightgray;
+}
+
+.terms:hover input ~ .checkmark {
+  background-color: gray;
+}
+
+.terms input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.terms input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.terms .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px;
+}
