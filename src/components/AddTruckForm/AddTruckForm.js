@@ -79,7 +79,7 @@ export default function AddTruckForm({ addTruck }) {
           onChange={ onChange }
         />
       </label> 
-      <form onSubmit={ addMenuItem }>
+      {/* <form onSubmit={ addMenuItem }>
         { formValues.menu.map(item => {
           return (
             <div>{item.itemName}</div>
@@ -113,7 +113,7 @@ export default function AddTruckForm({ addTruck }) {
           />
           <button>Add Menu Item</button>
         </label>
-      </form>
+      </form> */}
       <button>Add Truck</button>
     </form>
   )

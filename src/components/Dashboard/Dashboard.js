@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink, Route, useHistory, useRouteMatch, useParams } from "react-router-dom"
 import { v4 as uuid } from "uuid"
+import styled from "styled-components"
 
 import AddTruckForm from "../AddTruckForm/AddTruckForm"
 import Truck from "../Truck/Truck"
+import EditTruckCard from "./EditTruckCard"
 
 export default function Dashboard() {
   const [user, setUser] = useState({ id: uuid(), username: "chrisg", email: "cg@cg.com", trucks: [
@@ -26,13 +28,12 @@ export default function Dashboard() {
   ]}) 
   const hist = useHistory()
   const { url } = useRouteMatch()
-
   const addTruck = details => {
     setUser({...user, trucks: [...user.trucks, details]})
   }
 
-  const editTruck = truckName => {
-    hist.push(`${url}/${truckName}`)
+  const editSubmit = (formVals) => {
+    //Axios put
   }
 
   return (
@@ -45,7 +46,35 @@ export default function Dashboard() {
             <div className="user-dashboard-truck-name">Truck Name: { truck.truckName }</div>
             <div className="user-dashboard-truck-location">Location: { truck.location }</div>
             <div className="user-dashboard-truck-">Category: { truck.category }</div>
-            <button onClick={() => editTruck(truck.truckName) }>Edit Truck</button>
+            <EditTruckCard editSubmit={editSubmit} />
+            {/* <SDiv className={ expandEdit === true ? "disappear" : '' } onClick={ editTruck }>
+              { expandEdit && 
+                <form onSubmit={ onSubmit }>
+                  Truck Name
+                  <input
+                    type="text"
+                    name="truckName"
+                    value={ editValues.truckName }
+                    onChange={ onChange }
+                  />
+                  Location
+                  <input
+                    type="text"
+                    name="location"
+                    value={ editValues.location }
+                    onChange={ onChange }
+                  />
+                  Category
+                  <input
+                    type="text"
+                    name="category"
+                    value={ editValues.category }
+                    onChange={ onChange }
+                  />
+                  <button>Confirm</button>
+                </form>
+              }
+            </SDiv> */}
           </>
         )
       })}
