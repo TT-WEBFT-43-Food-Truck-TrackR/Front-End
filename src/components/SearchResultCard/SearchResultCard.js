@@ -117,6 +117,7 @@ export default function SearchResultCard({ result, addRating }) {
 
   const onSubmit = e => {
     e.preventDefault()
+    e.stopPropagation()
     const stars = ratingRef.current.value
     const feedback = commentRef.current.value
     addRating({ id: uuid(), rating: stars, comment: feedback }, result)
@@ -185,20 +186,20 @@ export default function SearchResultCard({ result, addRating }) {
             {
               expandForm &&
               <div className='alignForm'>
-                  <label>
-                    Rating:
+                <label>
                   <input
                     type="number"
                       name="rating"
                     ref={ratingRef}
+                    placeholder="Rating"
                     />
                   </label>
-                  <label>
-                    Comment:
+                <label>
                   <input
-                      type="text"
+                    type="textarea"
                       name="comment"
-                    ref={commentRef}
+                      ref={commentRef}
+                    placeholder="Add Comment"
                     />
                   </label>
                 <button className="submit">Submit</button>

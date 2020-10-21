@@ -87,24 +87,21 @@ export default function Dashboard() {
     <StyledPage>
       <div className="user-dashboard-username"><h1>Welcome back, {user.username}</h1></div>
       <div>
+        <div className="user-dash-board-add-truck-form">
+          <AddTruckForm addTruck={addTruck} />
+        </div>
       { user.trucks.map(truck => {
-        return (
-
+        return ( 
           <StyledTrucks>
             <div className="user-dashboard-truck-name"><h2>{truck.truckName}</h2></div>
             <div className="user-dashboard-truck-location"><h3>{truck.location}</h3></div>
             <div className="user-dashboard-truck-"><h4>Catagory: {truck.category}</h4></div>
-            <button onClick={() => editTruck(truck.truckName) }>Edit Truck</button>
+            <button onClick=''/*{() => editTruck(truck.truckName)}*/> Edit Truck</button>
           </StyledTrucks>
-
-          
-
         )
       })}
       </div>
-      <div className="user-dash-board-add-truck-form">
-        <AddTruckForm addTruck={ addTruck } />
-      </div>
+
 
       <Route path="/dashboard/:truckName">
         <Truck />

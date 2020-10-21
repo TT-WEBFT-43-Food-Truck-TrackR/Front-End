@@ -145,6 +145,5 @@ export default function AddTruckForm({ addTruck }) {
 
     </StyledForm>
 
-
   )
 }
