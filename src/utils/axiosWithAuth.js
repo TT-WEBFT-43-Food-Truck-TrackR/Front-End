@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
         headers:{
             Authorization:token
         },
-        baseURL: "https://github.com/foodtruck-trackR-tt31/node-backend/api/"
+        baseURL: "https://cors-anywhere.herokuapp.com/https://bw-foodtruck-tracker.herokuapp.com/api/"
     })
 }

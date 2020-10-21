@@ -19,7 +19,7 @@ function App() {
       <CssBaseline />
 
       <Switch>
-        <PrivateRoute path="/dashboard">
+        <PrivateRoute path="/dashboard" component={<Dashboard/>}>
           <Dashboard />
         </PrivateRoute>
         <Route path="/signup">

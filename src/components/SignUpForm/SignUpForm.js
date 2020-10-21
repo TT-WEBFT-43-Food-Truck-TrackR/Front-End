@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
-import { Link } from "react-router-dom"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 
 import { v4 as uuid } from "uuid"
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 import "./SignUpForm.css"
 
 import * as yup from "yup";
 import schema from "./schema"
+import Dashboard from '../Dashboard/Dashboard';
+import Axios from 'axios';
 
 const initialFormValues = {
   username: '',
@@ -27,6 +30,7 @@ export default function SignUpForm({ submit }) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [errors, setErrors] = useState(initialErrorValues)
   const [disabled, setDisabled] = useState(true)
+  const history = useHistory()
 
   const [users, setUsers] = useState([])
   
@@ -56,18 +60,33 @@ export default function SignUpForm({ submit }) {
   
   const onSubmit = e => {
     e.preventDefault()
+    debugger
     const newUser = {
-      id: uuid(),
-      username: formValues.username.trim(),
-      password: formValues.password.trim(),
-      email: formValues.email.trim(),
+      // "id": uuid(),
+      "username": formValues.username.trim(),
+      "password": formValues.password.trim(),
+      // "email": formValues.email.trim(),
+      "role":1
     }
 
-    setUsers([
-      ...users,
-      newUser
-    ])
-    setFormValues(initialFormValues)
+    console.log("PRE CALL")
+
+    axiosWithAuth().post('auth/register',newUser)
+    .then(res => {
+      console.log("YOU LOGGED IN",res)
+      localStorage.setItem('token', res.data.token);
+      history.push('/dashboard')
+
+
+    })
+    .catch(err => console.log("YOU DIDN'T LOG IN",err))
+    .finally(() => console.log("FINISHED CALL"))
+
+    // setUsers([
+    //   ...users,
+    //   newUser
+    // ])
+    // setFormValues(initialFormValues)
   }
 
   useEffect(() => {
