@@ -3,8 +3,8 @@ import styled from "styled-components"
 
 
 
-import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
-import { faStar as faStarSol } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
+// import { faStar as faStarSol } from "@fortawesome/free-solid-svg-icons"
 import { faStar as faStarReg } from "@fortawesome/free-regular-svg-icons"
 
 export default function Rating({ truck }) {
@@ -24,16 +24,16 @@ export default function Rating({ truck }) {
       <div className="rating-truck-name">{ name }</div>
       <div className="rating-truck-category">{ category }</div>
       <div className="rating-stars">
-        { stars.map((_, idx) => {
+        {/* { stars.map((_, idx) => {
           return (
-            <FAIcon key={ `${id}-star${idx}` } icon={ faStarSol } />
+            <FAIcon key={ `${id}-star${idx}` } icon={ faStarReg } />
           )
         })}
         { nulls.map((_, idx) => {
           return (
             <FAIcon key={ `${id}-null${idx}` } icon={ faStarReg } />
           )
-        })}
+        })} */}
       </div>
     </div>
   )

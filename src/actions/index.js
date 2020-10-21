@@ -1,61 +1,66 @@
 const actions = {
-    foodie:{
-        FETCH_TRUCKS:"FETCH_TRUCKS",
-        FETCH_TRUCK_REVIEWS:"FETCH_TRUCK_REVIEWS",
-        FETCH_REVEIW:"FETCH_REVEIW",
-        POST_REVIEW:"POST_REVIEW",
-
-    },
-    owner:{
+        FETCH_ALL_TRUCKS:"FETCH_TRUCKS",
+        SET_OWNER:"SET_OWNER",
         FETCH_TRUCKS:"FETCH_MY_TRUCKS",
-        FETCH_TRUCK:"FETCH_TRUCK",
-        POST_TRUCK:"POST_TRUCK",
-        UPDATE_TRUCK:"UPDATE_TRUCK",
-
-    },
+        SET_TRUCK:"SET_TRUCK",
+        FETCH_REVIEWS:"FETCH_REVIEWS",
+        SET_REVIEW:"SET_REVIEW",
+        FETCH_MENU:"FETCH_MENU",
+        SET_MENU_ITEM:"SET_MENU_ITEM",
 }
 
-export function fetchFoodieTrucks(){
+export function fetchAllTrucks(){
     return {
-        type:actions.foodie.FETCH_TRUCKS,
-        paylod:''
-    }
-}
-
-export function fetchOwnerTrucks(id){
-    return {
-        type:actions.owner.FETCH_TRUCKS,
-        paylod:id
-    }
-}
-export function fetchOwnerTruck(id){
-    return {
-        type:actions.owner.FETCH_TRUCK,
-        paylod:id
-    }
-}
-export function postTruck(truck){
-    return {
-        type:actions.owner.POST_TRUCK,
-        paylod:truck
-    }
-}
-export function updateTruck(truck){
-    return {
-        type:actions.owner.UPDATE_TRUCK,
-        paylod:truck
-    }
-}
-export function fetchReview(id){
-    return {
-        type:actions.foodie.FETCH_REVEIW,
-        paylod:id
+        type:actions.FETCH_ALL_TRUCKS,
+        payload:'all'
     }
 }
 
-export function postReview(review){
+export function setOwner(id){
     return {
-        type:actions.foodie.POST_REVIEW,
-        paylod:review
+        type:actions.SET_OWNER,
+        payload:id
+    }
+}
+
+export function fetchTrucks(ownerId){
+    return {
+        type:actions.FETCH_TRUCKS,
+        payload:ownerId
+    }
+}
+
+export function setTruck(id){
+    return {
+        type:actions.SET_TRUCK,
+        payload:id
+    }
+}
+
+export function fetchReviews(truckId){
+    return {
+        type:actions.FETCH_REVIEWS,
+        payload:truckId
+    }
+}
+
+export function setReview(reviewId){
+    return {
+        type:actions.FETCH_TRUCKS,
+        payload:reviewId
+    }
+}
+
+export function fetchMenu(truckId){
+    return {
+        type:actions.FETCH_MENU,
+        payload:truckId
+    }
+}
+
+export function setMenuItem(menuId){
+    return {
+        type:actions.SET_MENU_ITEM,
+        payload:menuId
     }
 }

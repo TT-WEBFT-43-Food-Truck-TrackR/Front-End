@@ -4,6 +4,8 @@ import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import styled from 'styled-components'
 import * as yup from "yup";
 import schema from "./schema"
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+
 const initialFormValues = {
   username: '',
   password: '',
@@ -67,10 +69,11 @@ export default function SignInForm({ submit }) {
 
   const [users, setUsers] = useState([
     {
-      id: 1,
-      username: "chrisg",
-      password: "123456",
-      email: "cg@cg.com" 
+      "id": 1,
+      "username": "chrisg",
+      "password": "123456",
+      "email": "cg@cg.com",
+      "role":1
     }
   ])
 
@@ -100,8 +103,13 @@ export default function SignInForm({ submit }) {
 
   const onSubmit = e => {
     e.preventDefault()
+      axiosWithAuth().post('auth/login/', formValues)
+        .then(res => {
+          localStorage.setItem('token', res.data.token);
+          hist.push('/dashboard');
+        })
+        .catch(err => console.log(err))
 
-    hist.push(users[0].id)
   }
 
   useEffect(() => {

@@ -1,14 +1,14 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
-import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faMapMarkerAlt, faBookmark } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
+// import { faSearch, faMapMarkerAlt, faBookmark } from "@fortawesome/free-solid-svg-icons"
 
 
 
 export default function MainFooter() {
   return (
     <div className="footer-container">
-      <div className="footer-button footer-button-left">
+      {/* <div className="footer-button footer-button-left">
         <FAIcon className="footer-icon" icon={ faSearch } size="lg" />
         <div className="footer-text">Search</div>
       </div>
@@ -19,7 +19,7 @@ export default function MainFooter() {
       <div className="footer-button footer-button-right">
         <FAIcon className="footer-icon" icon={ faBookmark } size="lg" />
         <div className="footer-text">Favorites</div>
-      </div>
+      </div> */}
     </div>
   )
 }

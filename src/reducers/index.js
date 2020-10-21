@@ -1,53 +1,56 @@
 import actions from '../actions'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
-const initialTruck = {
-    name:'',
-    id:'',
-    ownerId:'',
-    location:'',
-    category:'',
-    reviews:'',
-    stars:'',
-    menu:''
-}
+import { initialState } from "./initialState";
 
-const initialTruckArr = {
-    trucksArr:[]
-}
 
-export function trucksArrReducer(state=initialTruckArr,action){
+export function ownerReducer(state=initialState.owner,action){
     switch(action.type){
-        case actions.owner.POST_TRUCK:
-            axiosWithAuth.post('trucks',action.payload)
-            .then(res => console.log("THIS IS THE POST_TRUCK SUCCESS",res))
-            .catch(err => console.log("THIS IS THE POST_TRUCK ERR ===>", err))
-        break
+        case actions.SET_OWNER:
+            return {
+                ...state,
+                ownerID:action.payload
+            }
+            
+        case action.FETCH_TRUCKS:
+            axiosWithAuth().get(`trucks/user/${action.payload}`)
+            .then(res => {
+                return{
+                    ...state,
+                    trucks:res.data
+                }
+            })
+
+            break
+
         default:
             return state
     }
 }
 
-export function truckReducer(state= initialTruck, action){
+export function truckReducer(state=initialState.truck,action){
     switch(action.type){
 
-        case actions.owner.FETCH_TRUCK:
-            axiosWithAuth().get(`users/${action.payload}`)
+        case actions.SET_TRUCK:
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export function menuReducer(state=initialState.menu,action){
+    switch(action.type){
+
+        case actions.FETCH_MENU:
+            axiosWithAuth().get(`truck/menu/${action.payload}`)
             .then(res => {
-                state = res.data
+                return{
+                    ...state,
+                    menuItems:res.data
+                }
             })
             .catch(err => console.log(err))
-
-            return state
-
-        case actions.owner.UPDATE_TRUCK:
-            return {
-                ...state,
-                
-            }
-
-
-
+            break
         default:
             return state
     }
