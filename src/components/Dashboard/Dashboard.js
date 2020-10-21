@@ -47,34 +47,6 @@ export default function Dashboard() {
             <div className="user-dashboard-truck-location">Location: { truck.location }</div>
             <div className="user-dashboard-truck-">Category: { truck.category }</div>
             <EditTruckCard editSubmit={editSubmit} />
-            {/* <SDiv className={ expandEdit === true ? "disappear" : '' } onClick={ editTruck }>
-              { expandEdit && 
-                <form onSubmit={ onSubmit }>
-                  Truck Name
-                  <input
-                    type="text"
-                    name="truckName"
-                    value={ editValues.truckName }
-                    onChange={ onChange }
-                  />
-                  Location
-                  <input
-                    type="text"
-                    name="location"
-                    value={ editValues.location }
-                    onChange={ onChange }
-                  />
-                  Category
-                  <input
-                    type="text"
-                    name="category"
-                    value={ editValues.category }
-                    onChange={ onChange }
-                  />
-                  <button>Confirm</button>
-                </form>
-              }
-            </SDiv> */}
           </>
         )
       })}
