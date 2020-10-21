@@ -80,12 +80,20 @@ input:focus{
 .submit{
   text-align:center;
 }
+button{
+  font-size:calc(2rem + 0.4vw);
+  text-align:center;
+  border:1px solid black;
+
+}
 `
 const StyledMenu = styled.div`
 
 button{
   font-size:calc(2rem + 0.4vw);
   text-align:center;
+  border:1px solid black;
+
 }
 `
 const StyledReview = styled.div`
@@ -94,6 +102,8 @@ margin-bottom:1%;
 button{
   font-size:calc(2rem + 0.4vw);
   text-align:center;
+  border:1px solid black;
+
 }
 `
 

@@ -21,7 +21,7 @@ const initialErrorValues = {
 const StyledForm = styled.form`
 display:flex;
 box-shadow:0.5rem 1rem 0.8rem grey;
-background-color:gray;
+background-color:#4D4D4D;
 width:50%;
 border:2px solid red;
 margin:1% auto;
@@ -38,6 +38,8 @@ label{
 button{
   font-size:calc(2rem + 0.4vw);
   text-align:center;
+  border:1px solid black;
+
 }
 button:hover{
   color:#0392A6;
