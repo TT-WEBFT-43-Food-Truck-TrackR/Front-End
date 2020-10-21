@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
 import { v4 as uuid } from "uuid"
-import styled from "styled-components"
 import headerImg from "../../assets/headerImg.png"
 import Header from "../Header/Header"
 import MainFooter from "../MainFooter/MainFooter"
@@ -52,12 +51,13 @@ export default function LandingPage() {
           className="nav-link bottom"
           to="/signin"
         >Sign In</NavLink>
+
       </div> */}
       <Search />
       <MainFooter />
       { foodTrucks.map(truck => {
         return (
-          <Rating key={ truck.id } truck={ truck } />
+          <Rating key={truck.id} truck={truck} />
         )
       })}
     </div>

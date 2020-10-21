@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { Link } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
@@ -63,8 +64,9 @@ export default function SignUpForm({ submit }) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [errors, setErrors] = useState(initialErrorValues)
   const [disabled, setDisabled] = useState(true)
+
   const [users, setUsers] = useState([])
-  
+
   const onChange = e => {
     const { name, value, checked, type } = e.target
     const newValue = type === "checkbox" ? checked : value
@@ -88,7 +90,7 @@ export default function SignUpForm({ submit }) {
       [name]: newValue
     })
   }
-  
+
   const onSubmit = e => {
     e.preventDefault()
     const newUser = {
@@ -97,6 +99,7 @@ export default function SignUpForm({ submit }) {
       password: formValues.password.trim(),
       email: formValues.email.trim(),
     }
+
     setUsers([
       ...users,
       newUser
@@ -111,15 +114,16 @@ export default function SignUpForm({ submit }) {
   }, [formValues])
 
   return (
-    <div>
+
+    <div className="signup-container">
       <StyledForm onSubmit={onSubmit}>
         <label>
           <p>Username</p>
           <input
             type="text"
             name="username"
-            value={ formValues.username }
-            onChange={ onChange }
+            value={formValues.username}
+            onChange={onChange}
           />
         </label>
         <label>
@@ -127,8 +131,8 @@ export default function SignUpForm({ submit }) {
           <input
             type="password"
             name="password"
-            value={ formValues.password }
-            onChange={ onChange }
+            value={formValues.password}
+            onChange={onChange}
           />
         </label>
         <label>
@@ -136,8 +140,8 @@ export default function SignUpForm({ submit }) {
           <input
             type="email"
             name="email"
-            value={ formValues.email }
-            onChange={ onChange }
+            value={formValues.email}
+            onChange={onChange}
           />
         </label>
         <Link to="/login/signin">Already a member?</Link>
@@ -145,14 +149,14 @@ export default function SignUpForm({ submit }) {
           <input
             type="checkbox"
             name="terms"
-            checked={ formValues.terms }
-            onChange={ onChange }
+            checked={formValues.terms}
+            onChange={onChange}
           />
           <span className="checkmark"></span>
           I agree to the <a href="https://www.facebook.com/terms.php">Terms of Service</a>
         </label>
 
-        <button disabled={ disabled }>Sign Up</button>
+        <button disabled={disabled}>Sign Up</button>
       </StyledForm>
 
     </div>
