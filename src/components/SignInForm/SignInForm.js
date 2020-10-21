@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory, useRouteMatch } from "react-router-dom"
 
-import "./SignInForm.css"
+
 
 import * as yup from "yup";
 import schema from "./schema"

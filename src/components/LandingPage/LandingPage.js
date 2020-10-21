@@ -1,15 +1,14 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
 import { v4 as uuid } from "uuid"
-
+import styled from "styled-components"
 import headerImg from "../../assets/headerImg.png"
-
-import "./LandingPage.css"
-
 import Header from "../Header/Header"
 import MainFooter from "../MainFooter/MainFooter"
 import Rating from "../Rating/Rating"
 import Search from "../Search/Search"
+
+
 
 const foodTrucks = [
   {
@@ -40,7 +39,7 @@ const foodTrucks = [
 
 export default function LandingPage() {
   return (
-    <div className="landing-page">
+    <div>
       {/* <Header /> */}
       {/* <h1>Food Truck TrackR</h1> 
       <img src={ headerImg } alt="food truck" />

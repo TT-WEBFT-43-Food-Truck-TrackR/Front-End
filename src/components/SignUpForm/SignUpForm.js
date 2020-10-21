@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import { v4 as uuid } from "uuid"
 
-import "./SignUpForm.css"
+
 
 import * as yup from "yup";
 import schema from "./schema"
