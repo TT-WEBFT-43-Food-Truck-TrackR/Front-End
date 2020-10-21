@@ -48,10 +48,10 @@ export default function Header() {
       <StyledHeader>
       <h1>Food Truck TrackR</h1>
         <StyledNav>
-        <NavLink
-          activeClassName="active"
-          className="header-nav-link left"
-          to="/signup"
+          <NavLink
+            activeClassName="active"
+            className="header-nav-link left"
+            to="/signup"
         >Sign Up</NavLink>
         <NavLink
           activeClassName="active"
