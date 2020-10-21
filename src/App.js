@@ -11,6 +11,7 @@ import Header from "./components/Header/Header"
 import SignInForm from "./components/SignInForm/SignInForm"
 import SignUpForm from "./components/SignUpForm/SignUpForm"
 import Dashboard from "./components/Dashboard/Dashboard"
+import {PrivateRoute} from  './utils/PrivateRoute'
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
       <CssBaseline />
 
       <Switch>
-        <Route path="/dashboard">
+        <PrivateRoute path="/dashboard">
           <Dashboard />
-        </Route>
+        </PrivateRoute>
         <Route path="/signup">
           <Header />      
           <SignUpForm />

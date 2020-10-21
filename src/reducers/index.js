@@ -4,25 +4,23 @@ import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { initialState } from "./initialState";
 
 
-export function ownerTrucksReducer(state=initialState.owner,action){
+export function ownerReducer(state=initialState.owner,action){
     switch(action.type){
-        case actions.owner.POST_TRUCK:
-            axiosWithAuth.post('user/trucks',action.payload)
-            .then(res => console.log("THIS IS THE POST_TRUCK SUCCESS",res))
-            .catch(err => console.log("THIS IS THE POST_TRUCK ERR ===>", err))
-            break
-        case actions.owner.UPDATE_TRUCK:
-            axiosWithAuth.put('user/trucks',action.payload)
-            .then(res => console.log("THIS IS THE UPDATE_TRUCK SUCCESS",res))
-            .catch(err => console.log("THIS IS THE UPDATE_TRUCK ERR ===>", err))
-            break
-        case action.owner.FETCH_TRUCKS:
-            axiosWithAuth().get('user.trucks')
+        case actions.SET_OWNER:
+            return {
+                ...state,
+                ownerID:action.payload
+            }
+            
+        case action.FETCH_TRUCKS:
+            axiosWithAuth().get(`trucks/user/${action.payload}`)
             .then(res => {
-                console.log("THIS IS THE GET_TRUCKS SUCCESS",res.data)
-                return res.data
+                return{
+                    ...state,
+                    trucks:res.data
+                }
             })
-            .catch(err => console.log("THIS IS THE GET_TRUCKS ERR ===>", err))
+
             break
 
         default:
@@ -30,26 +28,29 @@ export function ownerTrucksReducer(state=initialState.owner,action){
     }
 }
 
-export function truckReducer(state= initialState.truck, action){
+export function truckReducer(state=initialState.truck,action){
     switch(action.type){
 
-        case actions.owner.FETCH_TRUCK:
-            axiosWithAuth().get(`users/${action.payload}`)
+        case actions.SET_TRUCK:
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export function menuReducer(state=initialState.menu,action){
+    switch(action.type){
+
+        case actions.FETCH_MENU:
+            axiosWithAuth().get(`truck/menu/${action.payload}`)
             .then(res => {
-                state = res.data
+                return{
+                    ...state,
+                    menuItems:res.data
+                }
             })
             .catch(err => console.log(err))
-
-            return state
-
-        case actions.owner.UPDATE_TRUCK:
-            return {
-                ...state,
-                
-            }
-
-
-
+            break
         default:
             return state
     }
