@@ -2,6 +2,48 @@ import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
 import React, { useState, useRef } from 'react'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
+import styled from 'styled-components'
+
+const StyledSearch = styled.div`
+display:flex;
+flex-direction:column;
+font-size:3.6rem;
+line-height:3rem;
+text-align:center;
+width:100%;
+button{
+  font-size:calc(2rem + 0.4vw);
+  text-align:center;
+}
+button:hover{
+  color:#0392A6;
+}
+button:active{
+  border-radius:8%;
+  transform:scale(.94);
+}
+.searchBar{
+  margin:2%;
+  padding:1%;
+  width:30%
+}
+input:focus{
+  box-shadow:0 0 0.5rem #0392A6;
+  border:1px solid #0392A6;
+}
+form{
+  align-items:center;
+  width:100%;
+}
+
+.cardContainer{
+  display:flex;
+  width:100%;
+  flex-direction:column;
+}
+
+`
+
 
 export default function Search() {
   const ref = useRef()
@@ -40,23 +82,25 @@ export default function Search() {
   }
 
   return (
-    <div>
+    <StyledSearch>
       <form onSubmit={ onSubmit }>
         <label>
-          Search
-          <input
+          <input className="searchBar"
             type="text"
             name="search"
+            placeholder="Search..."
             ref={ ref }
           />
         </label>
         <button>Submit</button>
       </form>
+      <div className='cardContainer'>
       { results.map(result => {
         return (
           <SearchResultCard result={ result } addRating={ addRating } />
         )
       })}
-    </div>
+      </div>
+    </StyledSearch>
   )
 }

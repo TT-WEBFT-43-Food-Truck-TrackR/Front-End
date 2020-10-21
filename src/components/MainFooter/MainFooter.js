@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
 import { faSearch, faMapMarkerAlt, faBookmark } from "@fortawesome/free-solid-svg-icons"
 
-import "./MainFooter.css"
+
 
 export default function MainFooter() {
   return (
