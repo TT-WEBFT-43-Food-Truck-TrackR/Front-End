@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import { NavLink, Route, useHistory, useRouteMatch, useParams } from "react-router-dom"
 import { v4 as uuid } from "uuid"
+
 import styled from 'styled-components'
+
+
+
+
 import AddTruckForm from "../AddTruckForm/AddTruckForm"
 import Truck from "../Truck/Truck"
+import EditTruckCard from "./EditTruckCard"
 
 
 
@@ -69,13 +75,12 @@ export default function Dashboard() {
   ]}) 
   const hist = useHistory()
   const { url } = useRouteMatch()
-
   const addTruck = details => {
     setUser({...user, trucks: [...user.trucks, details]})
   }
 
-  const editTruck = truckName => {
-    hist.push(`${url}/${truckName}`)
+  const editSubmit = (formVals) => {
+    //Axios put
   }
 
   return (
@@ -84,12 +89,16 @@ export default function Dashboard() {
       <div>
       { user.trucks.map(truck => {
         return (
+
           <StyledTrucks>
             <div className="user-dashboard-truck-name"><h2>{truck.truckName}</h2></div>
             <div className="user-dashboard-truck-location"><h3>{truck.location}</h3></div>
             <div className="user-dashboard-truck-"><h4>Catagory: {truck.category}</h4></div>
             <button onClick={() => editTruck(truck.truckName) }>Edit Truck</button>
           </StyledTrucks>
+
+          
+
         )
       })}
       </div>

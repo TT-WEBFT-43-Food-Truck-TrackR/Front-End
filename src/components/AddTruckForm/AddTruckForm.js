@@ -136,43 +136,11 @@ export default function AddTruckForm({ addTruck }) {
             placeholder="Category"
         />
       </label> 
+
       </div>
 
-      {/* <form onSubmit={ addMenuItem }>
-        { formValues.menu.map(item => {
-          return (
-            <div>{item.itemName}</div>
-          )
-        })}
-        <label>
-          Item Name
-          <input
-            type="text"
-            name="itemName"
-            value={ menuFormValues.itemName }
-            onChange={ menuOnChange }
-          />
-        </label>
-        <label>
-          Description
-          <input
-            type="text"
-            name="desc"
-            value={ menuFormValues.desc }
-            onChange={ menuOnChange }
-          />
-        </label>
-        <label>
-          Price
-          <input
-            type="text"
-            name="price"
-            value={ menuFormValues.price }
-            onChange={ menuOnChange }
-          />
-          <button>Add Menu Item</button>
-        </label>
-      </form> */}
+
+      
       <button>Add Truck</button>
 
     </StyledForm>
