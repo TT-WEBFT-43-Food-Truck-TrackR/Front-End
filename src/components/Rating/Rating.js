@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 
-import "./Rating.css"
+
 
 // import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome"
 // import { faStar as faStarSol } from "@fortawesome/free-solid-svg-icons"

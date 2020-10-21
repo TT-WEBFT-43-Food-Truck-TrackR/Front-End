@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { v4 as uuid } from "uuid"
-import styled from 'styled-components'
 
 const initialFormValues = {
   truckName: '',
@@ -15,61 +14,7 @@ const initialMenuValues = {
   price: ''
 }
 
-const StyledForm = styled.form`
-display:flex;
-box-shadow:0.5rem 1rem 0.8rem grey;
-background-color:#4D4D4D;
-flex-direction:column;
-width:90%;
-border:2px solid red;
-justify-content:center;
-margin:auto;
-margin-bottom:2%;
-font-size:2rem;
-padding:1%;
-align-items:center;
-text-align:center;
-
-button{
-  font-size:calc(2rem + 0.4vw);
-  text-align:center;
-  border:1px solid black;
-
-}
-button:hover{
-  color:#0392A6;
-}
-button:active{
-  border-radius:8%;
-  transform:scale(.94);
-}
-.format{
-  display:flex;
-  align-items:center; 
-  justify-content:center;
-  width:100%;
-  label{
-  margin:1%;
-  padding:.3%;
-  }
-  
-}
-input{
-  padding:2%;
-  
-}
-input:focus{
-  box-shadow:0 0 0.5rem #0392A6;
-  border:1px solid #0392A6;
-  
-}
-@media(max-width:570px){
-    .format{
-      flex-direction:column;
-    }
-  } 
-`
-export default function AddTruckForm({ addTruck }) {
+export default function EditTruckFrom({ truck }) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [menuFormValues, setMenuFormValues] = useState(initialMenuValues)
 
@@ -106,45 +51,65 @@ export default function AddTruckForm({ addTruck }) {
   }
 
   return (
-
-    <StyledForm onSubmit={onSubmit}>
-      <div className='format'>
-        <label>
+    <form onSubmit={ onSubmit }>
+      <label>
+        Truck Name
         <input
           type="text"
           name="truckName"
           value={ formValues.truckName }
           onChange={ onChange }
-            placeholder="Truck Name"
         />
       </label> 
-        <label>
+      <label>
+        Location
         <input
           type="text"
           name="location"
           value={ formValues.location }
           onChange={ onChange }
-            placeholder="Location"
         />
       </label> 
-        <label>
+      <label>
+        Category
         <input
           type="text"
           name="category"
           value={ formValues.category }
           onChange={ onChange }
-            placeholder="Category"
         />
       </label> 
-
-      </div>
-
-
-      
+      <form onSubmit={ addMenuItem }>
+        <label>
+          Item Name
+          <input
+            type="text"
+            name="itemName"
+            value={ menuFormValues.itemName }
+            onChange={ menuOnChange }
+          />
+        </label>
+        <label>
+          Description
+          <input
+            type="text"
+            name="desc"
+            value={ menuFormValues.desc }
+            onChange={ menuOnChange }
+          />
+        </label>
+        <label>
+          Price
+          <input
+            type="text"
+            name="price"
+            value={ menuFormValues.price }
+            onChange={ menuOnChange }
+          />
+          <button>Add Menu Item</button>
+        </label>
+      </form>
       <button>Add Truck</button>
-
-    </StyledForm>
-
-
+    </form>
   )
 }
