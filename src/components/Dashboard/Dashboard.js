@@ -3,6 +3,7 @@ import { NavLink, Route, useHistory, useRouteMatch, useParams } from "react-rout
 import { v4 as uuid } from "uuid"
 
 import AddTruckForm from "../AddTruckForm/AddTruckForm"
+import EditTruckFrom from '../EditTruckForm/EditTruckForm'
 import Truck from "../Truck/Truck"
 
 export default function Dashboard() {
@@ -50,14 +51,16 @@ export default function Dashboard() {
         )
       })}
       </div>
+      <EditTruckFrom />
+
+      <Route path={`/dashboard/:truckName`}>
+        <Truck />
+      </Route>
+
       <div className="user-dash-board-add-truck-form">
         <h2>Add Truck</h2>
         <AddTruckForm addTruck={ addTruck } />
       </div>
-
-      <Route path="/dashboard/:truckName">
-        <Truck />
-      </Route>
     </div>
   )
 }

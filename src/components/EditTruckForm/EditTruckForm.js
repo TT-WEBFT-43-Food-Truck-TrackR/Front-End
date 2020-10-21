@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { v4 as uuid } from "uuid"
 
 const initialFormValues = {
@@ -14,13 +14,24 @@ const initialMenuValues = {
   price: ''
 }
 
-export default function EditTruckFrom({ truck }) {
+export default function EditTruckFrom() {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [menuFormValues, setMenuFormValues] = useState(initialMenuValues)
+  const [truck, setTruck] = useState({ id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", category: "BBQ", reviews: [
+      {id: uuid(), rating: 3, comment: "This food was good"},
+      {id: uuid(), rating: 2, comment: "This food was okay"},
+      {id: uuid(), rating: 1, comment: "This food was shit"}
+    ], ratingAvg: 2, menu: [
+      {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
+      {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
+    ]})
 
   const onSubmit = e => {
     e.preventDefault()
-    addTruck({ ...formValues, id: uuid() })
+    // Object.entries(formValues).forEach((key, value) => {
+    //   setTruck({...truck, key: value})
+    // })
+    // setTruck({...truck, [Object.keys(formValues)]: Object.values(formValues)})
     setFormValues(initialFormValues)
   }
 
