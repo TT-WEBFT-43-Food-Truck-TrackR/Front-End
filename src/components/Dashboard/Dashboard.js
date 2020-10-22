@@ -5,13 +5,12 @@ import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
 
 import {connect} from 'react-redux'
-import { fetchAllTrucks } from "../../actions";
+import { fetchAllTrucks,fetchMyTrucks,setTruck,setOperator } from "../../actions";
 
 
 import AddTruckForm from "../AddTruckForm/AddTruckForm"
 import Truck from "../Truck/Truck"
 import EditTruckCard from "./EditTruckCard"
-import { getTruck } from '../../utils/allTheAxiosCalls'
 
 
 
@@ -82,7 +81,9 @@ function Dashboard(props) {
   // }
 
   useEffect(() => {
-    props.user = props.dispatch(fetchAllTrucks())
+    props.dispatch(fetchAllTrucks())
+    props.dispatch(setOperator())
+    props.dispatch(fetchMyTrucks(props.operator.operator_id))
 
   },[])
   
@@ -93,9 +94,9 @@ function Dashboard(props) {
 
   return (
     <StyledPage>
-      <div className="user-dashboard-username"><h1>Welcome back, {user.username}</h1></div>
+      <div className="user-dashboard-username"><h1>Welcome back!</h1></div>
       <div>
-      { user.trucks.map(truck => {
+      { props.operator.trucks.map(truck => {
         return (
 
           <StyledTrucks>
@@ -111,7 +112,7 @@ function Dashboard(props) {
       })}
       </div>
       <div className="user-dash-board-add-truck-form">
-        <AddTruckForm addTruck={ addTruck } />
+        <AddTruckForm />
       </div>
 
       <Route path="/dashboard/:truckName">
@@ -124,7 +125,7 @@ function Dashboard(props) {
 function mapStateToProps(state){
   return {
     trucks:state.trucks,
-    user:state.operator
+    operator:state.operator
   }
 }
 

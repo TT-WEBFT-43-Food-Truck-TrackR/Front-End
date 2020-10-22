@@ -4,7 +4,7 @@ import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
 import { fetchAllTrucks } from "../../actions";
-import { connect } from "react-reduxx";
+import { connect } from "react-redux";
 
 const StyledSearch = styled.div`
 display:flex;
@@ -71,8 +71,8 @@ function Search(props) {
   const onSubmit = e => {
     e.preventDefault()
     const search = ref.current.value
-    results.filter(result => {
-      return result.truckName.toLowerCase().includes(search.toLowerCase())
+    props.allTrucks.filter(result => {
+      return result.name.toLowerCase().includes(search.toLowerCase())
     })
   }
 
@@ -83,10 +83,9 @@ function Search(props) {
     // console.log(newResult)
   }
 
-  const results = []
 
   useEffect(() => {
-    results = props.dispatch(fetchAllTrucks())
+    props.dispatch(fetchAllTrucks())
   },[])
 
   return (
@@ -103,7 +102,7 @@ function Search(props) {
         <button>Submit</button>
       </form>
       <div className='cardContainer'>
-      { results.map(result => {
+      { props.allTrucks.trucksArr.map(result => {
         return (
           <SearchResultCard result={ result } addRating={ addRating } />
         )
@@ -115,7 +114,7 @@ function Search(props) {
 
 function mapStateToProps(state){
   return{
-    results:state.results
+    allTrucks:state.allTrucks
   }
 }
 
