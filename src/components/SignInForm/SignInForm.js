@@ -108,7 +108,7 @@ export default function SignInForm({ submit }) {
           localStorage.setItem('token', res.data.token);
           hist.push('/dashboard');
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log("THIS IS THE LOGIN ERROR ===>",err))
 
   }
 
