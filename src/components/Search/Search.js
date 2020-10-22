@@ -1,8 +1,10 @@
 // import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
+
+import { axiosWithAuth } from "../../utils/axiosWithAuth"
 
 const StyledSearch = styled.div`
 display:flex;
@@ -47,30 +49,44 @@ form{
 
 export default function Search() {
   const ref = useRef()
-  const [results, setResults] = useState([
-    { id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", reviews: [
-      {id: uuid(), rating: 3, comment: "This food was good"},
-      {id: uuid(), rating: 2, comment: "This food was okay"},
-      {id: uuid(), rating: 1, comment: "This food was shit"}
-    ], ratingAvg: 2, menu: [
-      {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
-      {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
-    ]},
-    { id: uuid(), truckName: "Mexican Truck Food", location: "Los Angeles, California", reviews: [
-      {id: uuid(), rating: 3, comment: "This food was good"},
-      {id: uuid(), rating: 2, comment: "This food was okay"},
-      {id: uuid(), rating: 1, comment: "This food was shit"}
-    ], ratingAvg: 2, menu: [
-      {id: uuid(), itemName: "Chicken Quesadilla", desc: "grilled chicken quesadilla and pico de gallo", price: "12.99"},
-      {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
-    ]}
-  ])
+  // const [results, setResults] = useState([
+  //   { id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", reviews: [
+  //     {id: uuid(), rating: 3, comment: "This food was good"},
+  //     {id: uuid(), rating: 2, comment: "This food was okay"},
+  //     {id: uuid(), rating: 1, comment: "This food was shit"}
+  //   ], ratingAvg: 2, menu: [
+  //     {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
+  //     {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
+  //   ]},
+  //   { id: uuid(), truckName: "Mexican Truck Food", location: "Los Angeles, California", reviews: [
+  //     {id: uuid(), rating: 3, comment: "This food was good"},
+  //     {id: uuid(), rating: 2, comment: "This food was okay"},
+  //     {id: uuid(), rating: 1, comment: "This food was shit"}
+  //   ], ratingAvg: 2, menu: [
+  //     {id: uuid(), itemName: "Chicken Quesadilla", desc: "grilled chicken quesadilla and pico de gallo", price: "12.99"},
+  //     {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
+  //   ]}
+  // ])
+
+  const [results, setResults] = useState([])
+
+  useEffect(() => {
+    axiosWithAuth().get('trucks')
+    .then(res => {
+        console.log("GET TRUCKS SUCCESS ===>", res.data)
+        setResults(res.data)
+    })
+    .catch(err => console.log("GET TRUCKS FAILURE ===>", err))
+  }, [])
 
   const onSubmit = e => {
     e.preventDefault()
     const search = ref.current.value
     setResults(results.filter(result => {
-      return result.truckName.toLowerCase().includes(search.toLowerCase())
+      if (result.name === null) {
+        return false
+      }
+      return result.name.toLowerCase().includes(search.toLowerCase())
     }))
   }
 
@@ -95,11 +111,13 @@ export default function Search() {
         <button>Submit</button>
       </form>
       <div className='cardContainer'>
-      { results.map(result => {
-        return (
-          <SearchResultCard result={ result } addRating={ addRating } />
-        )
-      })}
+        { results.length > 0 && console.log(results) }
+        { results.length > 0 && results.map(result => {
+          console.log(result)
+          return (
+            <SearchResultCard result={ result } addRating={ addRating } />
+          )
+        })}
       </div>
     </StyledSearch>
   )
