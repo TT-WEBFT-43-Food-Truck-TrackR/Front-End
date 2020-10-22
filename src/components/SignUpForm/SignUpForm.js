@@ -104,11 +104,13 @@ export default function SignUpForm({ submit }) {
 
   const onSubmit = e => {
     e.preventDefault()
+    debugger
     const newUser = {
       // "id": uuid(),
       "username": formValues.username.trim(),
       "password": formValues.password.trim(),
       // "email": formValues.email.trim(),
+      "city": formValues.city.trim(),
       "role":1
     }
 
@@ -161,11 +163,11 @@ export default function SignUpForm({ submit }) {
           />
         </label>
         <label>
-          <p>Email</p>
+          <p>City</p>
           <input
-            type="email"
-            name="email"
-            value={formValues.email}
+            type="text"
+            name="city"
+            value={formValues.city}
             onChange={onChange}
           />
         </label>
