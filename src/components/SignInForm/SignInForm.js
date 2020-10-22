@@ -67,15 +67,15 @@ export default function SignInForm({ submit }) {
   const { url } = useRouteMatch()
   const hist = useHistory()
 
-  const [users, setUsers] = useState([
-    {
-      "id": 1,
-      "username": "chrisg",
-      "password": "123456",
-      "email": "cg@cg.com",
-      "role":1
-    }
-  ])
+  // const [users, setUsers] = useState([
+  //   {
+  //     "id": 1,
+  //     "username": "chrisg",
+  //     "password": "123456",
+  //     "email": "cg@cg.com",
+  //     "role":1
+  //   }
+  // ])
 
 
   const onChange = e => {

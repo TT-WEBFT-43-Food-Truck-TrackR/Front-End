@@ -5,7 +5,8 @@ export const axiosWithAuth = () => {
 
     return axios.create({
         headers:{
-            Authorization:token
+            Authorization:token,
+            RetryAfter: 1000
         },
         baseURL: "https://cors-anywhere.herokuapp.com/https://bw-foodtruck-tracker.herokuapp.com/api/"
     })
