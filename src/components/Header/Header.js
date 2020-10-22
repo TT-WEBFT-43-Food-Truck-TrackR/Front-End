@@ -12,20 +12,22 @@ color:#A8A7A7;
 max-height:10vh;
 h1{
   padding:.5%;
-  font-size:calc(3rem + 0.4vw);
+  
+  font-size:calc(2rem + 0.2vw);
   margin-right:auto;
 }
 `
 const StyledNav = styled.div`
 display:flex;
-width:60%;
+width:50%;
 justify-content: flex-end;
+
 
 a{
   text-decoration:none;
-  font-size:calc(1.6rem + 0.4vw);
-  margin: 2%;
-  padding:1%;
+  font-size:calc(1.5rem + 0.2vw);
+  margin: 1%;
+  
   color:#A8A7A7;
   }
   a:hover{
