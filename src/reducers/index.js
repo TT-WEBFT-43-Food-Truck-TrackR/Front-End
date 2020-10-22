@@ -9,13 +9,13 @@ export function reducer(state=initialState,action){
         case action.FETCH_ALL_TRUCKS:
             axiosWithAuth().get('trucks')
             .then(res => {
-                console.log("GET TRUCKS SUCCESS ===>", res.data)
+                console.log("GET ALL TRUCKS SUCCESS ===>", res.data)
                 return{
                     ...state,
                     "allTrucks":res.data
                 }
             })
-            .catch(err => console.log("GET TRUCKS FAILURE ===>", err))
+            .catch(err => console.log("GET ALL TRUCKS FAILURE ===>", err))
             break
         case actions.SET_OPERATOR:
             axiosWithAuth().get('session')

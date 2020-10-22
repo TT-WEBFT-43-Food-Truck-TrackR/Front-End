@@ -82,9 +82,7 @@ function Search(props) {
   }
 
 
-  useEffect(() => {
-    props.dispatch(fetchAllTrucks())
-  },[])
+
     
     axiosWithAuth().post(`trucks/${reviewObj.truck_id}/review`, reviewObj)
     .then(res => {
@@ -109,9 +107,9 @@ function Search(props) {
       </form>
       <div className='cardContainer'>
 
-      { props.allTrucks.trucksArr.map(result => {
+      { results.map(result => {
         return (
-          <SearchResultCard result={ result } addRating={ addRating } />
+          <SearchResultCard result={ result } addRating={ addRating } key={result.id}/>
         )
       })}
 
