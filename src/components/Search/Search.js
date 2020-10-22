@@ -67,14 +67,13 @@ export default function Search() {
   //     {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
   //   ]}
   // ])
-  const [getRes, setGetRes] = useState([])
   const [results, setResults] = useState([])
 
   useEffect(() => {
     axiosWithAuth().get('trucks')
     .then(res => {
         console.log("GET TRUCKS SUCCESS ===>", res.data)
-        setGetRes(res.data)
+        setResults(res.data)
     })
     .catch(err => console.log("GET TRUCKS FAILURE ===>", err))
   }, [])
@@ -89,30 +88,35 @@ export default function Search() {
       return result.name.toLowerCase().includes(search.toLowerCase())
     }))
   }
+// const index = this.state.employees.findIndex(emp => emp.id === employee.id),
+//           employees = [...this.state.employees] // important to create a copy, otherwise you'll modify state outside of setState call
+//     employees[index] = employee;
+//     this.setState({employees});
+  // const updateReview = (id, review) => {
+  //   const idx = results.findIndex(truck => truck.id === id)
+  //   const newResults = [...results]
+  //   newResults[idx].reviews = [...results[idx].reviews, review]
+  //   console.log(newResults)
+  //   setResults(newResults)
+  //   // console.log(idx)
+  // }
 
-  const addRating = (rating, result) => {
-    const newResult = {...result, reviews: [...result.reviews, rating]}
-    setResults([...results, {...result, reviews: [...result.reviews, rating]}])
+  const addRating = (rating) => {
+    const reviewObj = {rating: rating.rating, review: rating.comment, truck_id: rating.truck_id}
+    // const newResult = {...result, reviews: [...result.reviews, rating]}
+    // setResults([...results, {...result, reviews: [...result.reviews, rating]}])
+
+    axiosWithAuth().post(`trucks/${reviewObj.truck_id}/review`, reviewObj)
+    .then(res => {
+        console.log("POST REVIEW SUCCESS ===>", res.data)
+        return(res.data)
+    })
+    .catch(err => console.log("POST REVIEW FAILURE ===>", err))
     // console.log({...result, reviews: [...result.reviews, rating]})
     // console.log(newResult)
+    // updateReview(rating.truck_id, rating)
   }
 
-  useEffect(() => {
-    const promises = []
-    getRes.forEach(result => {
-      const promise = axiosWithAuth().get(`trucks/${result.id}`)
-        .then(res => {
-            console.log("GET TRUCK SUCCESS ===>", res.data)
-            return(res.data)
-        })
-        .catch(err => console.log("GET TRUCK FAILURE ===>", err))
-      promises.push(promise)
-    })
-    Promise.all(promises).then(resp => {
-      console.log("all", resp)
-      setResults(resp)
-    })
-  }, [getRes])
 
   // useEffect(() => {
   //   axiosWithAuth().get('trucks/4')
@@ -135,9 +139,7 @@ export default function Search() {
         <button>Submit</button>
       </form>
       <div className='cardContainer'>
-        { results.length > 0 && console.log(results) }
-        { results.length > 0 && results.map(result => {
-          console.log(result)
+        { results.map(result => {
           return (
             <SearchResultCard result={ result } addRating={ addRating } />
           )
