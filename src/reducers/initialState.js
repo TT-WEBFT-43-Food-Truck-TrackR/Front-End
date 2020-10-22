@@ -1,42 +1,38 @@
-
 export const initialState = {
     // get post put delete
     "truck" : {
         "name":"",
         "id":"",
-        "ownerId":"",
-        "location":"",
-        "category":"",
+        "operator_id":"",
+        "city":"",
+        "cuisine":"",
         "rating":"",
         "reviews":[],
+        "imgURL":'',
         "menu":[]
     },
-    "owner" : {
-        "ownerId":"",
+    "operator" : {
+        "operator_id":"",
         "trucks":[]
     },
     "allTrucks" : {
         "trucksArr":[]
     },
     "truckReview":{
-        "truckId":"",
+        "truck_id":"",
         "name":"",
         "rating":"",
         "description":""
     },
     "menu":{
-        "truckId":"",
+        "truck_id":"",
         "menuItems":[]
     },
     "menuItem":{
-        "truckId":"",
+        "truck_id":"",
         "id":"",
-        "title":"",
+        "name":"",
         "price":"",
-        "description":"",
-        "photo":"",
-        "rating":"",
-        "reviews":[]
     },
     "menuReview":{
         "menuId":"",

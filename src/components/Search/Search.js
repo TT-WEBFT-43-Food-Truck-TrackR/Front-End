@@ -1,8 +1,10 @@
 // import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
+import { fetchAllTrucks } from "../../actions";
+import { connect } from "react-reduxx";
 
 const StyledSearch = styled.div`
 display:flex;
@@ -45,41 +47,47 @@ form{
 `
 
 
-export default function Search() {
+function Search(props) {
   const ref = useRef()
-  const [results, setResults] = useState([
-    { id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", reviews: [
-      {id: uuid(), rating: 3, comment: "This food was good"},
-      {id: uuid(), rating: 2, comment: "This food was okay"},
-      {id: uuid(), rating: 1, comment: "This food was shit"}
-    ], ratingAvg: 2, menu: [
-      {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
-      {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
-    ]},
-    { id: uuid(), truckName: "Mexican Truck Food", location: "Los Angeles, California", reviews: [
-      {id: uuid(), rating: 3, comment: "This food was good"},
-      {id: uuid(), rating: 2, comment: "This food was okay"},
-      {id: uuid(), rating: 1, comment: "This food was shit"}
-    ], ratingAvg: 2, menu: [
-      {id: uuid(), itemName: "Chicken Quesadilla", desc: "grilled chicken quesadilla and pico de gallo", price: "12.99"},
-      {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
-    ]}
-  ])
+  // const [results, setResults] = useState([
+  //   { id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", reviews: [
+  //     {id: uuid(), rating: 3, comment: "This food was good"},
+  //     {id: uuid(), rating: 2, comment: "This food was okay"},
+  //     {id: uuid(), rating: 1, comment: "This food was shit"}
+  //   ], ratingAvg: 2, menu: [
+  //     {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
+  //     {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
+  //   ]},
+  //   { id: uuid(), truckName: "Mexican Truck Food", location: "Los Angeles, California", reviews: [
+  //     {id: uuid(), rating: 3, comment: "This food was good"},
+  //     {id: uuid(), rating: 2, comment: "This food was okay"},
+  //     {id: uuid(), rating: 1, comment: "This food was shit"}
+  //   ], ratingAvg: 2, menu: [
+  //     {id: uuid(), itemName: "Chicken Quesadilla", desc: "grilled chicken quesadilla and pico de gallo", price: "12.99"},
+  //     {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
+  //   ]}
+  // ])
 
   const onSubmit = e => {
     e.preventDefault()
     const search = ref.current.value
-    setResults(results.filter(result => {
+    results.filter(result => {
       return result.truckName.toLowerCase().includes(search.toLowerCase())
-    }))
+    })
   }
 
   const addRating = (rating, result) => {
     const newResult = {...result, reviews: [...result.reviews, rating]}
-    setResults([...results, {...result, reviews: [...result.reviews, rating]}])
-    console.log({...result, reviews: [...result.reviews, rating]})
-    console.log(newResult)
+    // setResults([...results, {...result, reviews: [...result.reviews, rating]}])
+    // console.log({...result, reviews: [...result.reviews, rating]})
+    // console.log(newResult)
   }
+
+  const results = []
+
+  useEffect(() => {
+    results = props.dispatch(fetchAllTrucks())
+  },[])
 
   return (
     <StyledSearch>
@@ -104,3 +112,11 @@ export default function Search() {
     </StyledSearch>
   )
 }
+
+function mapStateToProps(state){
+  return{
+    results:state.results
+  }
+}
+
+export default connect(mapStateToProps)(Search)

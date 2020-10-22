@@ -1,11 +1,9 @@
-const actions = {
+export const actions = {
         FETCH_ALL_TRUCKS:"FETCH_TRUCKS",
-        SET_OWNER:"SET_OWNER",
-        FETCH_TRUCKS:"FETCH_MY_TRUCKS",
+        SET_OPERATOR:"SET_OPERATOR",
+        FETCH_MY_TRUCKS:"FETCH_MY_TRUCKS",
         SET_TRUCK:"SET_TRUCK",
-        FETCH_REVIEWS:"FETCH_REVIEWS",
         SET_REVIEW:"SET_REVIEW",
-        FETCH_MENU:"FETCH_MENU",
         SET_MENU_ITEM:"SET_MENU_ITEM",
 }
 
@@ -16,17 +14,17 @@ export function fetchAllTrucks(){
     }
 }
 
-export function setOwner(id){
+export function setOperator(){
     return {
-        type:actions.SET_OWNER,
-        payload:id
+        type:actions.SET_OPERATOR,
+        payload:''
     }
 }
 
-export function fetchTrucks(ownerId){
+export function fetchMyTrucks(operatorObj){
     return {
-        type:actions.FETCH_TRUCKS,
-        payload:ownerId
+        type:actions.FETCH_MY_TRUCKS,
+        payload:operatorObj
     }
 }
 
