@@ -1,10 +1,11 @@
-// import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
 import React, { useState, useRef,useEffect } from 'react'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import { v4 as uuid } from "uuid"
 import styled from 'styled-components'
 import { fetchAllTrucks } from "../../actions";
 import { connect } from "react-redux";
+
+import { axiosWithAuth } from "../../utils/axiosWithAuth"
 
 const StyledSearch = styled.div`
 display:flex;
@@ -49,24 +50,16 @@ form{
 
 function Search(props) {
   const ref = useRef()
-  // const [results, setResults] = useState([
-  //   { id: uuid(), truckName: "BBQ Truck Food", location: "Los Angeles, California", reviews: [
-  //     {id: uuid(), rating: 3, comment: "This food was good"},
-  //     {id: uuid(), rating: 2, comment: "This food was okay"},
-  //     {id: uuid(), rating: 1, comment: "This food was shit"}
-  //   ], ratingAvg: 2, menu: [
-  //     {id: uuid(), itemName: "Grilled Chicken", desc: "grilled chicken on bun", price: "9.99"},
-  //     {id: uuid(), itemName: "BBQ Chicken", desc: "bbq chicken and fries", price: "10.99"}
-  //   ]},
-  //   { id: uuid(), truckName: "Mexican Truck Food", location: "Los Angeles, California", reviews: [
-  //     {id: uuid(), rating: 3, comment: "This food was good"},
-  //     {id: uuid(), rating: 2, comment: "This food was okay"},
-  //     {id: uuid(), rating: 1, comment: "This food was shit"}
-  //   ], ratingAvg: 2, menu: [
-  //     {id: uuid(), itemName: "Chicken Quesadilla", desc: "grilled chicken quesadilla and pico de gallo", price: "12.99"},
-  //     {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
-  //   ]}
-  // ])
+  const [results, setResults] = useState([])
+
+  useEffect(() => {
+    axiosWithAuth().get('trucks')
+    .then(res => {
+        console.log("GET TRUCKS SUCCESS ===>", res.data)
+        setResults(res.data)
+    })
+    .catch(err => console.log("GET TRUCKS FAILURE ===>", err))
+  }, [])
 
   const onSubmit = e => {
     e.preventDefault()
@@ -75,6 +68,11 @@ function Search(props) {
       return result.name.toLowerCase().includes(search.toLowerCase())
     })
   }
+
+  const addRating = (rating) => {
+    const reviewObj = {rating: rating.rating, review: rating.comment, truck_id: rating.truck_id}
+    // const newResult = {...result, reviews: [...result.reviews, rating]}
+    // setResults([...results, {...result, reviews: [...result.reviews, rating]}])
 
   const addRating = (rating, result) => {
     const newResult = {...result, reviews: [...result.reviews, rating]}
@@ -87,6 +85,14 @@ function Search(props) {
   useEffect(() => {
     props.dispatch(fetchAllTrucks())
   },[])
+    
+    axiosWithAuth().post(`trucks/${reviewObj.truck_id}/review`, reviewObj)
+    .then(res => {
+        console.log("POST REVIEW SUCCESS ===>", res.data)
+        return(res.data)
+    })
+    .catch(err => console.log("POST REVIEW FAILURE ===>", err))
+  }
 
   return (
     <StyledSearch>
@@ -102,11 +108,13 @@ function Search(props) {
         <button>Submit</button>
       </form>
       <div className='cardContainer'>
+
       { props.allTrucks.trucksArr.map(result => {
         return (
           <SearchResultCard result={ result } addRating={ addRating } />
         )
       })}
+
       </div>
     </StyledSearch>
   )

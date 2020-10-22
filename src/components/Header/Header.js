@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 import headerBanner from "../../assets/headerImg.png"
 import styled from 'styled-components'
 
@@ -18,7 +18,7 @@ h1{
 `
 const StyledNav = styled.div`
 display:flex;
-width:30%;
+width:60%;
 justify-content: flex-end;
 
 a{
@@ -43,11 +43,27 @@ const StyledImg = styled.img`
 
 
 export default function Header() {
+  const { push } = useHistory()
+
+  const logout = () => {
+    localStorage.clear("token")
+  }
+
   return (
     <>
       <StyledHeader>
       <h1>Food Truck TrackR</h1>
         <StyledNav>
+        <NavLink
+            activeClassName="active"
+            className="header-nav-link left"
+            to="/dashboard"
+          >Dashboard</NavLink>
+          <NavLink
+            activeClassName="active"
+            className="header-nav-link left"
+            to="/"
+          >Home</NavLink>
           <NavLink
             activeClassName="active"
             className="header-nav-link left"
@@ -58,6 +74,9 @@ export default function Header() {
           className="header-nav-link right"
           to="/signin"
         >Sign In</NavLink>
+        { localStorage.getItem("token") !== null && 
+          <NavLink to="/" onClick={ logout }>Sign Out</NavLink>
+        }
         </StyledNav>
       </StyledHeader>
       <StyledImg src={headerBanner} href="food truck" />

@@ -11,10 +11,9 @@ export default yup
       .string()
       .min(6, "Password must be at least 6 characters in length")
       .required("Password is a required field"),
-    email: yup
+    city: yup
       .string()
-      .email("Must be a valid email")
-      .required("Email is a required field"),
+      .required("City is a required field"),
     terms: yup
       .boolean()
       .oneOf([true])

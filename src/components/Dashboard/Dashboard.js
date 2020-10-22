@@ -99,20 +99,17 @@ function Dashboard(props) {
       { props.operator.trucks.map(truck => {
         return (
 
+        <div className="user-dash-board-add-truck-form">
+          <AddTruckForm />
+        </div>
           <StyledTrucks>
             <div className="user-dashboard-truck-name"><h2>{truck.truckName}</h2></div>
             <div className="user-dashboard-truck-location"><h3>{truck.location}</h3></div>
             <div className="user-dashboard-truck-"><h4>Catagory: {truck.category}</h4></div>
-            {/* <button onClick={() => editTruck(truck.truckName) }>Edit Truck</button> */}
+            <EditTruckCard editSubmit={ editSubmit } />
           </StyledTrucks>
-
-          
-
         )
       })}
-      </div>
-      <div className="user-dash-board-add-truck-form">
-        <AddTruckForm />
       </div>
 
       <Route path="/dashboard/:truckName">
