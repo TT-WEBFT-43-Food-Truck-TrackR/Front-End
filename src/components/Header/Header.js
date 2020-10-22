@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 import headerBanner from "../../assets/headerImg.png"
 import styled from 'styled-components'
 
@@ -43,6 +43,12 @@ const StyledImg = styled.img`
 
 
 export default function Header() {
+  const { push } = useHistory()
+
+  const logout = () => {
+    localStorage.clear("token")
+  }
+
   return (
     <>
       <StyledHeader>
@@ -68,6 +74,9 @@ export default function Header() {
           className="header-nav-link right"
           to="/signin"
         >Sign In</NavLink>
+        { localStorage.getItem("token") !== null && 
+          <NavLink to="/" onClick={ logout }>Sign Out</NavLink>
+        }
         </StyledNav>
       </StyledHeader>
       <StyledImg src={headerBanner} href="food truck" />
