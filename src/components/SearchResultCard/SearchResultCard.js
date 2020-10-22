@@ -146,6 +146,7 @@ export default function SearchResultCard({ result, addRating }) {
     <StyledCard>
       <div className="search-result-card-name"><h2>{result.name}</h2></div>
       <div className="search-result-card-location"><h3>{result.city}</h3></div>
+      <div className="search-result-card-cuisine"><h3>{result.cuisine}</h3></div>
       {/* <div className="search-result-card-rating-avg"><h3>Rating: {result.ratingAvg}</h3>
       </div> */}
       <div className={expandThings === true ? 'dissappear' : ''} onClick={seeThings}><span>v</span></div>

@@ -67,14 +67,14 @@ export default function Search() {
   //     {id: uuid(), itemName: "Chili Burrito", desc: "chicken buritto with chili and rice", price: "11.99"}
   //   ]}
   // ])
-
+  const [getRes, setGetRes] = useState([])
   const [results, setResults] = useState([])
 
   useEffect(() => {
     axiosWithAuth().get('trucks')
     .then(res => {
         console.log("GET TRUCKS SUCCESS ===>", res.data)
-        setResults(res.data)
+        setGetRes(res.data)
     })
     .catch(err => console.log("GET TRUCKS FAILURE ===>", err))
   }, [])
@@ -93,9 +93,33 @@ export default function Search() {
   const addRating = (rating, result) => {
     const newResult = {...result, reviews: [...result.reviews, rating]}
     setResults([...results, {...result, reviews: [...result.reviews, rating]}])
-    console.log({...result, reviews: [...result.reviews, rating]})
-    console.log(newResult)
+    // console.log({...result, reviews: [...result.reviews, rating]})
+    // console.log(newResult)
   }
+
+  useEffect(() => {
+    const promises = []
+    getRes.forEach(result => {
+      const promise = axiosWithAuth().get(`trucks/${result.id}`)
+        .then(res => {
+            console.log("GET TRUCK SUCCESS ===>", res.data)
+            return(res.data)
+        })
+        .catch(err => console.log("GET TRUCK FAILURE ===>", err))
+      promises.push(promise)
+    })
+    Promise.all(promises).then(resp => {
+      console.log("all", resp)
+      setResults(resp)
+    })
+  }, [getRes])
+
+  // useEffect(() => {
+  //   axiosWithAuth().get('trucks/4')
+  //     .then(resp => {
+  //       console.log(resp)
+  //     })
+  // }, [])
 
   return (
     <StyledSearch>
