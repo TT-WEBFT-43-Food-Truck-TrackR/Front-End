@@ -104,7 +104,6 @@ export default function SignUpForm({ submit }) {
 
   const onSubmit = e => {
     e.preventDefault()
-    debugger
     const newUser = {
       // "id": uuid(),
       "username": formValues.username.trim(),
