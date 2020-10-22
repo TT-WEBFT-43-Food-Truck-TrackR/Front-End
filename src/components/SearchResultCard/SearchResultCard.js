@@ -161,8 +161,8 @@ export default function SearchResultCard({ result, addRating }) {
               result.menu.map(item => {
                   return (
                     <div className="toLeft">
-                      <div><h3>Dish</h3> <p>{item.itemName}</p></div>
-                      <div><h3>Description</h3> <p>{item.desc}</p></div>
+                      <div><h3>Dish</h3> <p>{item.name}</p></div>
+                      <div><h3>Price</h3> <p>{item.price}</p></div>
                     </div>
                   )
                 })}
@@ -175,7 +175,8 @@ export default function SearchResultCard({ result, addRating }) {
               result.reviews.map(review => {
                   return (
                     <div className="toLeft">
-                      <div><h3>Review</h3> <p>{review.comment}</p></div>
+                      <div><h3>Username</h3> <p>{review.username}</p></div>
+                      <div><h3>Review</h3> <p>{review.review}</p></div>
                       <div><h3>Rating</h3> <p>{review.rating}</p></div>
                     </div>
                   )
